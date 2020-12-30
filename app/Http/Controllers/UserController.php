@@ -83,8 +83,6 @@ class UserController extends Controller
             $msg = 'Usuário foi alterado com sucesso';
         }
 
-
-
         if (strlen(trim($request->password)) > 0)
             $values['password'] = Hash::make($request->password);
 
