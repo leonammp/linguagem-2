@@ -10917,6 +10917,7 @@ a.text-dark:focus {
     -moz-border-radius:50%;
     -webkit-border-radius:50%;
     border-radius:50%;
+    object-fit: cover;
 }
 
 .profile-small {
@@ -10925,5 +10926,6 @@ a.text-dark:focus {
     float: left;
     border-radius: 50%;
     margin-right: 25px;
+    object-fit: cover;
 }
 

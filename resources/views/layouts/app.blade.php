@@ -25,10 +25,17 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
 <body>
-<div id="app" class="w-90 h-100">
+<div id="app">
     @include('layouts.navbar')
     <div class="container">
         @yield('content')
+    </div>
+</div>
+<div class="container mt-5 pt-5 mb-5">
+    <div class="row">
+        <div class="col-md-12 text-center">
+            <span style="color: gray">Desenvolvido por</span> <a href="https://github.com/leonammp/" target="_blank">Leonam Mendonça</a>
+        </div>
     </div>
 </div>
 </body>
