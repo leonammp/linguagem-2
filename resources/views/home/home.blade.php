@@ -226,10 +226,23 @@
                         @foreach ($dados['metas'] as $meta)
                             <div class="col-md-12">
                                 <h6>{{ $meta->descricao }}</h6>
-                                <h5 class="m-b-30 f-w-700">R$ {{ number_format($meta->valor,2,",",".") }}<span class="text-c-green m-l-10">{{ number_format($meta->porcentagem,2,",",".") }}% completa</span></h5>
-                                <div class="progress">
-                                    <div class="progress-bar bg-c-blue" style="width:{{ intval(number_format($meta->porcentagem,2,",",".")) }}%"></div>
-                                </div>
+                                <h5 class="m-b-30 f-w-700">R$ {{ number_format($meta->valor,2,",",".") }}
+                                    <span class="text-c-green m-l-10">
+                                        @if($meta->porcentagem > 100)
+                                            finalizada
+                                        </h5>
+                                        <div class="progress">
+                                            <div class="progress-bar bg-c-green" style="width:100%"></div>
+                                        </div>
+                                        @else
+                                            {{ number_format($meta->porcentagem,2,",",".") }}% completa
+                                        </h5>
+                                        <div class="progress">
+                                            <div class="progress-bar bg-c-blue" style="width:{{ intval(number_format($meta->porcentagem,2,",",".")) }}%"></div>
+                                        </div>
+                                        @endif
+                                    </span>
+
                             </div>
                         @endforeach
                     </div>
