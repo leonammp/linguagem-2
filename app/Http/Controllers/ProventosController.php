@@ -26,4 +26,19 @@ class ProventosController extends Controller
             ->route('home.index')
             ->with('error', 'Ocorreu um erro, tente novamente!');
     }
+
+    public function destroy(Request $request)
+    {
+        $provento = Proventos::find($request->id);
+
+        if ($provento->delete()){
+            return redirect()
+                ->route('home.index')
+                ->with('success', 'Provento removido com sucesso!');
+        }
+
+        return redirect()
+            ->route('home.index')
+            ->with('error', 'Ocorreu um erro, tente novamente!');
+    }
 }

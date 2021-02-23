@@ -24,6 +24,7 @@ Route::post('carteira/buy', [App\CarteiraController::class, 'buy'])->name('carte
 Route::post('carteira/destroy', [App\CarteiraController::class, 'destroy'])->name('carteira.destroy')->middleware('auth');
 
 Route::post('proventos/add', [App\ProventosController::class, 'add'])->name('proventos.add')->middleware('auth');
+Route::post('proventos/destroy', [App\ProventosController::class, 'destroy'])->name('proventos.destroy')->middleware('auth');
 
 Route::post('metas/add', [App\MetasController::class, 'add'])->name('metas.add')->middleware('auth');
 

@@ -180,7 +180,7 @@
                             <td>
                                 <form action="{{ route('carteira.destroy', 'id='.$ativo->id) }}" method="POST">
                                     @csrf
-                                    <button type="submit" id="delete-transacao" data-id="{{ $ativo->id }}" class="btn btn-danger delete-user">
+                                    <button type="submit" id="delete-transacao" data-id="{{ $ativo->id }}" class="btn btn-danger delete-transacao">
                                         <i class="fas fa-trash-alt"></i>
                                     </button>
                                 </form>
@@ -205,17 +205,26 @@
                         <th>Total</th>
                         <th>Data</th>
                         <th>Tipo</th>
+                        <th>Ação</th>
                     </tr>
                     @foreach ($dados['proventos'] as $ativo)
                         @if($ativo->tipo == 'dividendo')
-                            <tr style="background-color: lightskyblue">
+                            <tr style="background-color: #b3e2ff">
                         @else
-                            <tr style="background-color: lightseagreen">
+                            <tr style="background-color: #36d5cc">
                                 @endif
                                 <td>{{ $ativo->nome }}</td>
                                 <td>R$ {{ number_format($ativo->valor,2,",",".") }}</td>
                                 <td>{{ date('d/m/Y', strtotime($ativo->data_negociacao)) }}</td>
-                                <td>{{ $ativo->tipo }}</td>
+                                <td>{{ strtoupper($ativo->tipo) }}</td>
+                                <td>
+                                    <form action="{{ route('proventos.destroy', 'id='.$ativo->id) }}" method="POST">
+                                        @csrf
+                                        <button type="submit" id="delete-proventos" data-id="{{ $ativo->id }}" class="btn btn-danger delete-provento">
+                                            <i class="fas fa-trash-alt"></i>
+                                        </button>
+                                    </form>
+                                </td>
                             </tr>
                             @endforeach
                 </table>
