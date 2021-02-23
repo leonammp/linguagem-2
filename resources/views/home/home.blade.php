@@ -165,7 +165,7 @@
                         <th>Qtd</th>
                         <th>Total</th>
                         <th>Data Negociação</th>
-                        <th>Compra/Venda</th>
+                        <th>Ação</th>
                     </tr>
                     @foreach ($dados['ultimas_transacoes'] as $ativo)
                         @if($ativo->compra_venda == 'venda')
@@ -177,7 +177,14 @@
                             <td>{{ $ativo->quantidade }}</td>
                             <td>R$ {{ number_format($ativo->valor,2,",",".") }}</td>
                             <td>{{ date('d/m/Y', strtotime($ativo->data_negociacao)) }}</td>
-                            <td>{{ $ativo->compra_venda }}</td>
+                            <td>
+                                <form action="{{ route('carteira.destroy', 'id='.$ativo->id) }}" method="POST">
+                                    @csrf
+                                    <button type="submit" id="delete-transacao" data-id="{{ $ativo->id }}" class="btn btn-danger delete-user">
+                                        <i class="fas fa-trash-alt"></i>
+                                    </button>
+                                </form>
+                            </td>
                         </tr>
                     @endforeach
                 </table>

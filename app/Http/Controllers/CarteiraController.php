@@ -54,4 +54,19 @@ class CarteiraController extends Controller
             ->route('home.index')
             ->with('error', 'Ocorreu um erro, tente novamente!');
     }
+
+    public function destroy(Request $request)
+    {
+        $carteira = Carteira::find($request->id);
+
+        if ($carteira->delete()){
+            return redirect()
+                ->route('home.index')
+                ->with('success', 'Transação removida com sucesso!');
+        }
+
+        return redirect()
+            ->route('home.index')
+            ->with('error', 'Ocorreu um erro, tente novamente!');
+    }
 }

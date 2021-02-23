@@ -21,6 +21,7 @@ Route::get('/', function () {
 Route::resource('home',App\HomeController::class)->middleware('auth');
 Route::post('carteira/add', [App\CarteiraController::class, 'store'])->name('carteira.store')->middleware('auth');
 Route::post('carteira/buy', [App\CarteiraController::class, 'buy'])->name('carteira.buy')->middleware('auth');
+Route::post('carteira/destroy', [App\CarteiraController::class, 'destroy'])->name('carteira.destroy')->middleware('auth');
 
 Route::post('proventos/add', [App\ProventosController::class, 'add'])->name('proventos.add')->middleware('auth');
 

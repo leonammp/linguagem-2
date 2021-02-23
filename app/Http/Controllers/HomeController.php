@@ -114,7 +114,7 @@ class HomeController extends Controller
                 'metas.valor',
                 DB::raw('('.$total['total'].' / metas.valor * 100) as porcentagem')
             )
-            ->orderBy('created_at', 'desc')
+            ->orderBy('porcentagem', 'asc')
             ->paginate(5, ['*'], 'metas');
 
         $dados = [
