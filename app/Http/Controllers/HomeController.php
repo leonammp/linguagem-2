@@ -31,7 +31,7 @@ class HomeController extends Controller
             'carteira.produto',
             DB::raw('SUM(CASE WHEN carteira.compra_venda = "compra" THEN carteira.valor ELSE - carteira.valor END) as total')
         )
-            ->groupBy(['carteira.categoria', 'carteira.produto'])
+            ->groupBy(['carteira.produto'])
             ->having('total', '>', 0)
             ->get();
 
