@@ -185,70 +185,57 @@
             </div>
         </div>
 
-{{--        <div class="col-md-4">--}}
-{{--            <h5>Proventos</h5>--}}
-{{--            <div class="table-responsive">--}}
-{{--                <table class="table table-bordered" id="proventos">--}}
-{{--                    <tr>--}}
-{{--                        <th>Ativo</th>--}}
-{{--                        <th>Por cota</th>--}}
-{{--                        <th>Total</th>--}}
-{{--                        <th>Data</th>--}}
-{{--                        <th>Dividendos/JCP</th>--}}
-{{--                    </tr>--}}
-{{--                    @foreach ($dados['ultimas_transacoes'] as $ativo)--}}
-{{--                        @if($ativo->compra_venda == 'venda')--}}
-{{--                            <tr style="background-color: #fdbbb1">--}}
-{{--                        @else--}}
-{{--                            <tr style="background-color: #cefdb1">--}}
-{{--                                @endif--}}
-{{--                                <td>{{ $ativo->nome }}</td>--}}
-{{--                                <td>{{ $ativo->quantidade }}</td>--}}
-{{--                                <td>R$ {{ number_format($ativo->valor,2,",",".") }}</td>--}}
-{{--                                <td>{{ date('d/m/Y', strtotime($ativo->data_negociacao)) }}</td>--}}
-{{--                                <td>{{ $ativo->compra_venda }}</td>--}}
-{{--                            </tr>--}}
-{{--                            @endforeach--}}
-{{--                </table>--}}
-{{--            </div>--}}
-{{--        </div>--}}
-{{--        <div class="col-md-4">--}}
-{{--            <h5>Metas</h5>--}}
-{{--            <div class="card proj-progress-card">--}}
-{{--                <div class="card-block">--}}
-{{--                    <div class="row">--}}
-{{--                        <div class="col-md-12">--}}
-{{--                            <h6>Completed Work</h6>--}}
-{{--                            <h5 class="m-b-30 f-w-700">532<span class="text-c-green m-l-10">+1.69%</span></h5>--}}
-{{--                            <div class="progress">--}}
-{{--                                <div class="progress-bar bg-c-red" style="width:25%"></div>--}}
-{{--                            </div>--}}
-{{--                        </div>--}}
-{{--                        <div class="col-md-12">--}}
-{{--                            <h6>Incomplete Work</h6>--}}
-{{--                            <h5 class="m-b-30 f-w-700">4,569<span class="text-c-red m-l-10">-0.5%</span></h5>--}}
-{{--                            <div class="progress">--}}
-{{--                                <div class="progress-bar bg-c-blue" style="width:65%"></div>--}}
-{{--                            </div>--}}
-{{--                        </div>--}}
-{{--                        <div class="col-md-12">--}}
-{{--                            <h6>Ongoing Work</h6>--}}
-{{--                            <h5 class="m-b-30 f-w-700">89%<span class="text-c-green m-l-10">+0.99%</span></h5>--}}
-{{--                            <div class="progress">--}}
-{{--                                <div class="progress-bar bg-c-green" style="width:85%"></div>--}}
-{{--                            </div>--}}
-{{--                        </div>--}}
-{{--                        <div class="col-md-12">--}}
-{{--                            <h6>Ongoing Digs</h6>--}}
-{{--                            <h5 class="m-b-30 f-w-700">365<span class="text-c-green m-l-10">+0.35%</span></h5>--}}
-{{--                            <div class="progress">--}}
-{{--                                <div class="progress-bar bg-c-yellow" style="width:45%"></div>--}}
-{{--                            </div>--}}
-{{--                        </div>--}}
-{{--                    </div>--}}
-{{--                </div>--}}
-{{--            </div>--}}
-{{--        </div>--}}
+        <div class="col-md-4">
+            <h5>Total de Proventos: R$ {{ number_format($dados['proventos_total'],2,",",".") }}</h5>
+            <h5 class="btn btn-success" data-toggle="modal" data-target="#add-proventos-modal">
+                <i class="fas fa-plus"></i>
+                Adicionar Proventos
+            </h5>
+            <div class="table-responsive">
+                <table class="table table-bordered" id="proventos">
+                    <tr>
+                        <th>Ativo</th>
+                        <th>Total</th>
+                        <th>Data</th>
+                        <th>Tipo</th>
+                    </tr>
+                    @foreach ($dados['proventos'] as $ativo)
+                        @if($ativo->tipo == 'dividendo')
+                            <tr style="background-color: lightskyblue">
+                        @else
+                            <tr style="background-color: lightseagreen">
+                                @endif
+                                <td>{{ $ativo->nome }}</td>
+                                <td>R$ {{ number_format($ativo->valor,2,",",".") }}</td>
+                                <td>{{ date('d/m/Y', strtotime($ativo->data_negociacao)) }}</td>
+                                <td>{{ $ativo->tipo }}</td>
+                            </tr>
+                            @endforeach
+                </table>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <h5>Metas</h5>
+            <h5 class="btn btn-primary" data-toggle="modal" data-target="#add-metas-modal">
+                <i class="fas fa-plus"></i>
+                Adicionar Meta
+            </h5>
+            <div class="card proj-progress-card">
+                <div class="card-block">
+                    <div class="row">
+                        @foreach ($dados['metas'] as $meta)
+                            <div class="col-md-12">
+                                <h6>{{ $meta->descricao }}</h6>
+                                <h5 class="m-b-30 f-w-700">R$ {{ number_format($meta->valor,2,",",".") }}<span class="text-c-green m-l-10">{{ number_format($meta->porcentagem,2,",",".") }}% completa</span></h5>
+                                <div class="progress">
+                                    <div class="progress-bar bg-c-blue" style="width:{{ intval(number_format($meta->porcentagem,2,",",".")) }}%"></div>
+                                </div>
+                            </div>
+                        @endforeach
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
     <!-- Add ativo -->
@@ -395,7 +382,94 @@
             </div>
         </div>
     </div>
+
+    <!-- add proventos -->
+    <div class="modal fade" id="add-proventos-modal" aria-hidden="true" >
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="addProventosModal">
+                        Adicionar Provento
+                    </h5>
+                </div>
+                <div class="modal-body">
+                    <form name="custForm" action="{{ route('proventos.add') }}" method="POST" autocomplete="off">
+                        <input type="hidden" name="ativo_id" id="ativo_id" >
+                        @csrf
+                        <div class="row">
+                            <div class="col-md-12 mx-auto">
+                                <div class="form-group">
+                                    <strong>Tipo de provento <span class="required-filed">*</span></strong>
+                                    <select type="text" name="tipo" id="tipo" class="form-control" required>
+                                        <option value="dividendo">Dividendos</option>
+                                        <option value="jcp">JCP</option>
+                                    </select>
+                                </div>
+                                <div class="tesouro">
+                                    <div class="form-group">
+                                        <strong>Qual o nome do ativo? <span class="required-filed">*</span></strong>
+                                        <input type="text" name="nome" id="nome" class="form-control" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <strong>Data<span class="required-filed">*</span></strong>
+                                        <input type="date" name="data_negociacao" class="form-control" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <strong>Valor do provento<span class="required-filed">*</span></strong>
+                                        <input type="text" name="valor" class="form-control" required>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-12 col-md-12 text-center">
+                                <button type="submit" id="btn-save" name="btnsave" class="btn btn-primary">Salvar provento</button>
+                                <a href="{{ route('home.index') }}" class="btn btn-danger">Cancelar</a>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- add metas -->
+    <div class="modal fade" id="add-metas-modal" aria-hidden="true" >
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="addMetasModal">
+                        Adicionar Meta
+                    </h5>
+                </div>
+                <div class="modal-body">
+                    <form name="custForm" action="{{ route('metas.add') }}" method="POST" autocomplete="off">
+                        <input type="hidden" name="ativo_id" id="ativo_id" >
+                        @csrf
+                        <div class="row">
+                            <div class="col-md-12 mx-auto">
+                                <div class="tesouro">
+                                    <div class="form-group">
+                                        <strong>Qual o nome da meta? <span class="required-filed">*</span></strong>
+                                        <input type="text" name="descricao" id="nome" class="form-control" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <strong>Valor para atingir a meta<span class="required-filed">*</span></strong>
+                                        <input type="text" name="valor" class="form-control" required>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-12 col-md-12 text-center">
+                                <button type="submit" id="btn-save" name="btnsave" class="btn btn-primary">Salvar meta</button>
+                                <a href="{{ route('home.index') }}" class="btn btn-danger">Cancelar</a>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
     <script>
+
+        $('input[name=valor]').maskMoney();
 
         let options = {
             legend: {

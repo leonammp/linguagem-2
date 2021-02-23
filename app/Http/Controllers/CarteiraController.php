@@ -17,7 +17,7 @@ class CarteiraController extends Controller
         $carteira->corretora = $request->corretora;
         $carteira->data_negociacao = $request->data_negociacao;
         $carteira->quantidade = $request->quantidade;
-        $carteira->valor = $request->valor;
+        $carteira->valor = str_replace(',', '', $request->valor);
         $carteira->compra_venda = 'compra';
 
         if ($carteira->save()){
@@ -41,7 +41,7 @@ class CarteiraController extends Controller
         $carteira->corretora = $request->corretora;
         $carteira->data_negociacao = $request->data_negociacao;
         $carteira->quantidade = $request->quantidade;
-        $carteira->valor = $request->valor;
+        $carteira->valor = str_replace(',', '', $request->valor);
         $carteira->compra_venda = 'venda';
 
         if ($carteira->save()){

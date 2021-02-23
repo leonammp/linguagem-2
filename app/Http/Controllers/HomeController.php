@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Carteira;
+use App\Models\Metas;
+use App\Models\Proventos;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -99,6 +101,22 @@ class HomeController extends Controller
             ->having('total', '>', 0)
             ->paginate(5, ['*'], 'internacional');
 
+        $proventos = Proventos::orderBy('data_negociacao', 'desc')
+            ->orderBy('created_at', 'desc')
+            ->paginate(5, ['*'], 'proventos');
+
+        $proventos_total = Proventos::select(
+                DB::raw('SUM(proventos.valor) as total')
+            )->first();
+
+        $metas = Metas::select(
+                'metas.descricao',
+                'metas.valor',
+                DB::raw('('.$total['total'].' / metas.valor * 100) as porcentagem')
+            )
+            ->orderBy('created_at', 'desc')
+            ->paginate(5, ['*'], 'metas');
+
         $dados = [
             'total' => $total['total'],
             'ultimas_transacoes' => $ultimas_transacoes,
@@ -110,6 +128,9 @@ class HomeController extends Controller
             'fii' => $fii,
             'acoes' => $acoes,
             'internacional' => $internacional,
+            'proventos' => $proventos,
+            'proventos_total' => $proventos_total['total'],
+            'metas' => $metas,
         ];
 
         return view('home.home')->with('dados', $dados);
