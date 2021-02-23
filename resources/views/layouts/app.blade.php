@@ -25,7 +25,7 @@
     <link href="{{ asset('css/app.css') . '?v=' . time() }}" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.css" integrity="sha512-C7hOmCgGzihKXzyPU/z4nv97W0d9bv4ALuuEbSf6hm93myico9qa0hv4dODThvCsqQUmKmLcJmlpRmCaApr83g==" crossorigin="anonymous" />
 </head>
-<body style="background-color: gray">
+<body>
 {{--#f7f7f7--}}
 <div id="app">
     @include('layouts.navbar')

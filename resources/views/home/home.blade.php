@@ -184,70 +184,71 @@
                 {{ $dados['ultimas_transacoes']->links() }}
             </div>
         </div>
-        <div class="col-md-4">
-            <h5>Proventos</h5>
-            <div class="table-responsive">
-                <table class="table table-bordered" id="proventos">
-                    <tr>
-                        <th>Ativo</th>
-                        <th>Por cota</th>
-                        <th>Total</th>
-                        <th>Data</th>
-                        <th>Dividendos/JCP</th>
-                    </tr>
-                    @foreach ($dados['ultimas_transacoes'] as $ativo)
-                        @if($ativo->compra_venda == 'venda')
-                            <tr style="background-color: #fdbbb1">
-                        @else
-                            <tr style="background-color: #cefdb1">
-                                @endif
-                                <td>{{ $ativo->nome }}</td>
-                                <td>{{ $ativo->quantidade }}</td>
-                                <td>R$ {{ number_format($ativo->valor,2,",",".") }}</td>
-                                <td>{{ date('d/m/Y', strtotime($ativo->data_negociacao)) }}</td>
-                                <td>{{ $ativo->compra_venda }}</td>
-                            </tr>
-                            @endforeach
-                </table>
-            </div>
-        </div>
-        <div class="col-md-4">
-            <h5>Metas</h5>
-            <div class="card proj-progress-card">
-                <div class="card-block">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <h6>Completed Work</h6>
-                            <h5 class="m-b-30 f-w-700">532<span class="text-c-green m-l-10">+1.69%</span></h5>
-                            <div class="progress">
-                                <div class="progress-bar bg-c-red" style="width:25%"></div>
-                            </div>
-                        </div>
-                        <div class="col-md-12">
-                            <h6>Incomplete Work</h6>
-                            <h5 class="m-b-30 f-w-700">4,569<span class="text-c-red m-l-10">-0.5%</span></h5>
-                            <div class="progress">
-                                <div class="progress-bar bg-c-blue" style="width:65%"></div>
-                            </div>
-                        </div>
-                        <div class="col-md-12">
-                            <h6>Ongoing Work</h6>
-                            <h5 class="m-b-30 f-w-700">89%<span class="text-c-green m-l-10">+0.99%</span></h5>
-                            <div class="progress">
-                                <div class="progress-bar bg-c-green" style="width:85%"></div>
-                            </div>
-                        </div>
-                        <div class="col-md-12">
-                            <h6>Ongoing Digs</h6>
-                            <h5 class="m-b-30 f-w-700">365<span class="text-c-green m-l-10">+0.35%</span></h5>
-                            <div class="progress">
-                                <div class="progress-bar bg-c-yellow" style="width:45%"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+
+{{--        <div class="col-md-4">--}}
+{{--            <h5>Proventos</h5>--}}
+{{--            <div class="table-responsive">--}}
+{{--                <table class="table table-bordered" id="proventos">--}}
+{{--                    <tr>--}}
+{{--                        <th>Ativo</th>--}}
+{{--                        <th>Por cota</th>--}}
+{{--                        <th>Total</th>--}}
+{{--                        <th>Data</th>--}}
+{{--                        <th>Dividendos/JCP</th>--}}
+{{--                    </tr>--}}
+{{--                    @foreach ($dados['ultimas_transacoes'] as $ativo)--}}
+{{--                        @if($ativo->compra_venda == 'venda')--}}
+{{--                            <tr style="background-color: #fdbbb1">--}}
+{{--                        @else--}}
+{{--                            <tr style="background-color: #cefdb1">--}}
+{{--                                @endif--}}
+{{--                                <td>{{ $ativo->nome }}</td>--}}
+{{--                                <td>{{ $ativo->quantidade }}</td>--}}
+{{--                                <td>R$ {{ number_format($ativo->valor,2,",",".") }}</td>--}}
+{{--                                <td>{{ date('d/m/Y', strtotime($ativo->data_negociacao)) }}</td>--}}
+{{--                                <td>{{ $ativo->compra_venda }}</td>--}}
+{{--                            </tr>--}}
+{{--                            @endforeach--}}
+{{--                </table>--}}
+{{--            </div>--}}
+{{--        </div>--}}
+{{--        <div class="col-md-4">--}}
+{{--            <h5>Metas</h5>--}}
+{{--            <div class="card proj-progress-card">--}}
+{{--                <div class="card-block">--}}
+{{--                    <div class="row">--}}
+{{--                        <div class="col-md-12">--}}
+{{--                            <h6>Completed Work</h6>--}}
+{{--                            <h5 class="m-b-30 f-w-700">532<span class="text-c-green m-l-10">+1.69%</span></h5>--}}
+{{--                            <div class="progress">--}}
+{{--                                <div class="progress-bar bg-c-red" style="width:25%"></div>--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
+{{--                        <div class="col-md-12">--}}
+{{--                            <h6>Incomplete Work</h6>--}}
+{{--                            <h5 class="m-b-30 f-w-700">4,569<span class="text-c-red m-l-10">-0.5%</span></h5>--}}
+{{--                            <div class="progress">--}}
+{{--                                <div class="progress-bar bg-c-blue" style="width:65%"></div>--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
+{{--                        <div class="col-md-12">--}}
+{{--                            <h6>Ongoing Work</h6>--}}
+{{--                            <h5 class="m-b-30 f-w-700">89%<span class="text-c-green m-l-10">+0.99%</span></h5>--}}
+{{--                            <div class="progress">--}}
+{{--                                <div class="progress-bar bg-c-green" style="width:85%"></div>--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
+{{--                        <div class="col-md-12">--}}
+{{--                            <h6>Ongoing Digs</h6>--}}
+{{--                            <h5 class="m-b-30 f-w-700">365<span class="text-c-green m-l-10">+0.35%</span></h5>--}}
+{{--                            <div class="progress">--}}
+{{--                                <div class="progress-bar bg-c-yellow" style="width:45%"></div>--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+{{--            </div>--}}
+{{--        </div>--}}
     </div>
 
     <!-- Add ativo -->
