@@ -241,7 +241,14 @@
                     <div class="row">
                         @foreach ($dados['metas'] as $meta)
                             <div class="col-md-12">
-                                <h6>{{ $meta->descricao }}</h6>
+                                <h6>{{ $meta->descricao }} <span style="position: absolute; right: 0">
+                                        <form action="{{ route('metas.destroy', 'id='.$meta->descricao) }}" method="POST">
+                                        @csrf
+                                        <button type="submit" id="delete-metas" data-id="{{ $meta->descricao }}" class="btn btn-danger delete-metas">
+                                            <i class="fas fa-trash-alt"></i>
+                                        </button>
+                                    </form>
+                                    </span></h6>
                                 <h5 class="m-b-30 f-w-700">R$ {{ number_format($meta->valor,2,",",".") }}
                                     <span class="text-c-green m-l-10">
                                         @if($meta->porcentagem > 100)
@@ -258,7 +265,7 @@
                                         </div>
                                         @endif
                                     </span>
-
+                                    <hr>
                             </div>
                         @endforeach
                     </div>
@@ -362,7 +369,7 @@
                                     </select>
                                 </div>
                                 <div class="form-group">
-                                    <strong>Em qual produto você investiu? <span class="required-filed">*</span></strong>
+                                    <strong>Qual produto você resgatou? <span class="required-filed">*</span></strong>
                                     <select type="text" name="produto" id="produto" class="form-control" required>
                                         <option value="tesouro">Tesouro Direto</option>
                                         <option value="fundo">Fundo de Investimento</option>
@@ -375,7 +382,7 @@
 
                                 <div class="tesouro">
                                     <div class="form-group">
-                                        <strong>Qual o nome do ativo que comprou? <span class="required-filed">*</span></strong>
+                                        <strong>Qual o nome do ativo que vendeu? <span class="required-filed">*</span></strong>
                                         <input type="text" name="nome" id="nome" class="form-control" required>
                                     </div>
                                     <div class="form-group">

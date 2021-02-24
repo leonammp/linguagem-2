@@ -24,4 +24,19 @@ class MetasController extends Controller
             ->route('home.index')
             ->with('error', 'Ocorreu um erro, tente novamente!');
     }
+
+    public function destroy(Request $request)
+    {
+        $meta = Metas::where('descricao', $request->id)->first();
+
+        if ($meta->delete()){
+            return redirect()
+                ->route('home.index')
+                ->with('success', 'Meta removida com sucesso!');
+        }
+
+        return redirect()
+            ->route('home.index')
+            ->with('error', 'Ocorreu um erro, tente novamente!');
+    }
 }

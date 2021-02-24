@@ -27,6 +27,7 @@ Route::post('proventos/add', [App\ProventosController::class, 'add'])->name('pro
 Route::post('proventos/destroy', [App\ProventosController::class, 'destroy'])->name('proventos.destroy')->middleware('auth');
 
 Route::post('metas/add', [App\MetasController::class, 'add'])->name('metas.add')->middleware('auth');
+Route::post('metas/destroy', [App\MetasController::class, 'destroy'])->name('metas.destroy')->middleware('auth');
 
 Route::get('profile',[App\UserController::class, 'profile'])->name('profile')->middleware('auth');
 Route::post('profile',[App\UserController::class, 'saveProfile'])->middleware('auth');
