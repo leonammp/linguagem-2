@@ -56,7 +56,7 @@
         /* Editar Usuario */
         $('body').on('click', '#edit-user', function () {
             var user_id = $(this).data('id');
-            $.get('home/'+user_id+'/edit', function (data) {
+            $.get('user/'+user_id+'/edit', function (data) {
                 $('#userCrudModal').html("<i class=\"fas fa-pencil-alt\"></i> Editar Usuário");
                 $('#btn-update').val("Editar");
                 $('#btn-save').prop('disabled',false);
@@ -73,7 +73,7 @@
         /* Ver Usuário */
         $('body').on('click', '#show-user', function () {
             var user_id = $(this).data('id');
-            $.get('home/'+user_id+'/edit', function (data) {
+            $.get('user/'+user_id+'/edit', function (data) {
                 $('#userCrudModal-show').html("Detalhes do Usuário");
                 $('#crud-modal-show').modal('show');
                 $('#user_id-show').val(data.id);
@@ -94,7 +94,7 @@
             if (confirm("Tem certeza que deseja deletar?")) {
                 $.ajax({
                     type: "DELETE",
-                    url: "home/"+user_id,
+                    url: "user/"+user_id,
                     data: {
                         "id": user_id,
                         "_token": token,

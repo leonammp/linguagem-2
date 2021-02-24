@@ -18,7 +18,7 @@ class HomeController extends Controller
 
         $ultimas_transacoes = Carteira::orderBy('data_negociacao', 'desc')
             ->orderBy('created_at', 'desc')
-            ->paginate(10, ['*'], 'transacoes');
+            ->paginate(5, ['*'], 'transacoes');
 
         $fixa_variavel = Carteira::select(
             'carteira.categoria',

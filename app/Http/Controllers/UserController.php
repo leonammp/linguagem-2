@@ -88,7 +88,7 @@ class UserController extends Controller
 
         User::updateOrCreate(['id' => $request->user_id], $values);
 
-        return redirect()->route('home.index')->with('success',$msg);
+        return redirect()->route('user.index')->with('success',$msg);
     }
 
     public function show(User $user)

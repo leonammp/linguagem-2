@@ -61,6 +61,9 @@
                             <a class="dropdown-item" href="{{ route('home') }}">
                                 {{ __('Home') }}
                             </a>
+                            <a class="dropdown-item" href="user">
+                                {{ __('Usuários') }}
+                            </a>
                             <a class="dropdown-item" href="{{ route('profile') }}">
                                 {{ __('Trocar foto de perfil') }}
                             </a>

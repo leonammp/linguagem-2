@@ -43,13 +43,11 @@
                     <table class="table table-bordered" id="user-table">
                         <tr>
                             <th>Ativo</th>
-                            <th>Quantidade</th>
                             <th>Total</th>
                         </tr>
                         @foreach ($dados['tesouro_direto'] as $ativo)
                             <tr>
                                 <td>{{ $ativo->nome }}</td>
-                                <td>{{ $ativo->quantidade }}</td>
                                 <td>R$ {{ number_format($ativo->total,2,",",".") }}</td>
                             </tr>
                         @endforeach
@@ -62,13 +60,11 @@
                     <table class="table table-bordered" id="user-table">
                         <tr>
                             <th>Ativo</th>
-                            <th>Quantidade</th>
                             <th>Total</th>
                         </tr>
                         @foreach ($dados['fundos'] as $ativo)
                             <tr>
                                 <td>{{ $ativo->nome }}</td>
-                                <td>{{ $ativo->quantidade }}</td>
                                 <td>R$ {{ number_format($ativo->total,2,",",".") }}</td>
                             </tr>
                         @endforeach
@@ -81,13 +77,11 @@
                     <table class="table table-bordered" id="user-table">
                         <tr>
                             <th>Ativo</th>
-                            <th>Quantidade</th>
                             <th>Total</th>
                         </tr>
                         @foreach ($dados['cdb'] as $ativo)
                             <tr>
                                 <td>{{ $ativo->nome }}</td>
-                                <td>{{ $ativo->quantidade }}</td>
                                 <td>R$ {{ number_format($ativo->total,2,",",".") }}</td>
                             </tr>
                         @endforeach
